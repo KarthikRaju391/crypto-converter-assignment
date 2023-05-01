@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import rupee from '../assets/rupee.svg'
 
 interface Props {
 	token: string;
@@ -35,9 +36,11 @@ const CurrentValue = ({ token, setUsdPrice }: Props) => {
 	}, [token, setUsdPrice]);
 
 	return (
-		<div>
-			<p>Current Value</p>
-			<p>₹ {isLoading ? "Loading..." : priceInInr}</p>
+		<div className="flex justify-between items-center">
+			<p className="text-sm text-[#C5C5C5]">Current value</p>
+			<p className="flex gap-2 items-center text-[#627EEA] font-semibold text-2xl">
+				<img src={rupee} alt="rupee symbol"/> {isLoading ? "Loading..." : priceInInr}
+			</p>
 		</div>
 	);
 };

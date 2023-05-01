@@ -40,7 +40,6 @@ const Navbar = () => {
 					<a href="#about">About</a>
 				</li>
 			</ul>
-			{/* <div className="w-1/2 mx-auto md:w-full lg:w-3/4"> */}
 			<a
 				href="#cta"
 				className={`${
@@ -50,7 +49,6 @@ const Navbar = () => {
 			>
 				Contact wallet
 			</a>
-			{/* </div> */}
 		</nav>
 	);
 };

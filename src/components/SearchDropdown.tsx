@@ -1,9 +1,12 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import CaretDown from "../assets/caret-down.svg";
+import { Token } from "./Form";
+import SearchModal from "./SearchModal";
 
 interface Props {
-	token: string;
-	setToken: React.Dispatch<React.SetStateAction<string>>;
+	token: Token;
+	setToken: React.Dispatch<React.SetStateAction<Token>>;
 	setAmountInvested: React.Dispatch<React.SetStateAction<string>>;
 	setCryptoReturns: React.Dispatch<React.SetStateAction<string>>;
 }
@@ -14,10 +17,12 @@ const SearchDropdown = ({
 	setAmountInvested,
 	setCryptoReturns,
 }: Props) => {
-	// const [searchItem, setSearchItem] = useState<string>("");
+	const [searchItem, setSearchItem] = useState<string>("");
 	const [topTokens, setTopTokens] = useState<any[]>([]);
+	const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
 
 	const apiKey = import.meta.env.VITE_API_KEY;
+
 	useEffect(() => {
 		const fetchTopTokens = async () => {
 			try {
@@ -44,27 +49,38 @@ const SearchDropdown = ({
 				console.error("Error fetching top tokens", error);
 			}
 		};
-
 		fetchTopTokens();
-	}, [apiKey]);
+	}, [apiKey, token]);
 
-	const handleSelect = (symbol: string) => {
-		setToken(symbol);
+	const handleSelect = (name: string, symbol: string, icon: string) => {
+		setToken({ name, symbol, icon });
+		setSearchItem("");
 		setAmountInvested("");
 		setCryptoReturns("");
 	};
 
 	return (
 		<div>
-			<h1>{token}</h1>
-			<ul>
-				{topTokens.map((token: any) => (
-					<li key={token.symbol} onClick={() => handleSelect(token.symbol)}>
-						<img src={token.iconUrl} alt={`${token.symbol} logo`} width={30} />
-						{token.name}
-					</li>
-				))}
-			</ul>
+			{isModalOpen ? (
+				<SearchModal
+					tokens={
+						searchItem
+							? topTokens.filter((token) => token.name.toLowerCase().includes(searchItem.toLowerCase()))
+							: topTokens
+					}
+					token={token.symbol}
+					setSearchItem={setSearchItem}
+					handleSelect={handleSelect}
+					setIsModalOpen={setIsModalOpen}
+				/>
+			) : null}
+			<div className="cursor-pointer" onClick={() => setIsModalOpen(true)}>
+				<div className="flex justify-start gap-3 items-center bg-[#1C1731] p-4 rounded-lg">
+					<img src={token.icon} alt={`${token.symbol} logo`} width={32} />
+					<p className="text-base">{token.name}</p>
+					<img className="ml-auto" src={CaretDown} alt="arrow-down" />
+				</div>
+			</div>
 		</div>
 	);
 };
