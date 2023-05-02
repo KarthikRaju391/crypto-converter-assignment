@@ -66,12 +66,11 @@ const CurrentValue = ({ token, setUsdPrice }: Props) => {
 		<div className="flex justify-between items-center">
 			<p className="text-sm text-[#C5C5C5]">Current value</p>
 			<p className="flex gap-2 items-center text-[#627EEA] font-semibold text-2xl">
-				{!state.isLoading && state.isError && (
+				{!state.isLoading && state.isError ? (
 					<XCircle size={30} className="text-[#FF4D4D]" />
-				)}
-				{state.isLoading ? (
+				) : state.isLoading ? (
 					<CircleNotch size={30} className="animate-spin" />
-				) : !state.isError ? (
+				) : !state.isError && !state.isLoading ? (
 					<>
 						<img src={rupee} alt="rupee symbol" /> {state.priceInInr}
 					</>
