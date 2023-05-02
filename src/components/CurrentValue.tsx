@@ -71,11 +71,11 @@ const CurrentValue = ({ token, setUsdPrice }: Props) => {
 				)}
 				{state.isLoading ? (
 					<CircleNotch size={30} className="animate-spin" />
-				) : (
+				) : !state.isError ? (
 					<>
 						<img src={rupee} alt="rupee symbol" /> {state.priceInInr}
 					</>
-				)}
+				) : null}
 			</p>
 		</div>
 	);

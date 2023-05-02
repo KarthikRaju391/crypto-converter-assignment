@@ -37,12 +37,12 @@ const Form: React.FC = () => {
 		<div className="relative min-h-screen mt-9 w-11/12 md:w-3/5 lg:w-[470px] top-20 mx-auto">
 			<div className="flex justify-center">
 				<div className="absolute top-[-30px] rounded-full bg-[#1c1731] border-2 border-[#46425E] z-50">
-						<img
-							src={token.icon}
-							alt=""
-							width={70}
-							className="object-cover rounded-full p-2"
-						/>
+					<img
+						src={token.icon}
+						alt={`${token.symbol} logo`}
+						width={70}
+						className="object-cover p-4"
+					/>
 				</div>
 			</div>
 			<div className="bg-gradient-to-b relative from-[#46425E] to-[#000000] p-[1px] rounded-xl">
