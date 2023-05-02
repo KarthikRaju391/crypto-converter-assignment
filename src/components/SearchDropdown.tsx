@@ -61,11 +61,13 @@ const SearchDropdown = ({
 
 	return (
 		<div>
-			{isModalOpen ? (
+			{isModalOpen && (
 				<SearchModal
 					tokens={
 						searchItem
-							? topTokens.filter((token) => token.name.toLowerCase().includes(searchItem.toLowerCase()))
+							? topTokens.filter((token) =>
+									token.name.toLowerCase().includes(searchItem.toLowerCase())
+							)
 							: topTokens
 					}
 					token={token.symbol}
@@ -73,7 +75,7 @@ const SearchDropdown = ({
 					handleSelect={handleSelect}
 					setIsModalOpen={setIsModalOpen}
 				/>
-			) : null}
+			)}
 			<div className="cursor-pointer" onClick={() => setIsModalOpen(true)}>
 				<div className="flex justify-start gap-3 items-center bg-[#1C1731] p-4 rounded-lg">
 					<img src={token.icon} alt={`${token.symbol} logo`} width={32} />

@@ -18,8 +18,8 @@ const SearchModal = ({
 	setIsModalOpen,
 }: Props) => {
 	return (
-		<div className="absolute modal-container inset-0 w-full min-h-screen bg-[#0B0819] grid place-items-center z-50">
-			<div className="w-[25rem] h-[29rem] rounded-xl bg-gradient-to-b mt-[16rem] from-[rgb(40,75,131)] to-[#000000] px-[0.85px] py-[0.85px]">
+		<div className="absolute modal-container inset-0 w-full bg-opacity-50 grid place-items-center z-50">
+			<div className="h-[29rem] w-[90%] rounded-xl bg-gradient-to-b mt-10 from-[#284b83] to-[#000000] px-[0.85px] py-[0.85px]">
 				<div className="bg-[#181627] rounded-xl h-full w-full">
 					<div className="flex justify-between items-center p-2">
 						<button
@@ -61,7 +61,6 @@ const SearchModal = ({
 										key={token.symbol}
 										onClick={() => {
 											handleSelect(token.name, token.symbol, token.iconUrl);
-											// setSelectedToken(token.symbol);
 											setIsModalOpen(false);
 										}}
 										className="bg-[#1b192d] rounded-md px-3 py-2 cursor-pointer"

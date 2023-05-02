@@ -34,19 +34,21 @@ const Form: React.FC = () => {
 	};
 
 	return (
-		<div className="grid place-items-center w-full min-h-screen mt-9">
-			<div className="absolute top-48 border-8 ml-[2.5px] border-[#1c1731] rounded-full">
-				<img
-					src={token.icon}
-					alt=""
-					width={55}
-					className="object-cover round-border p-2"
-				/>
+		<div className="relative min-h-screen mt-9 w-11/12 md:w-3/5 lg:w-[470px] top-20 mx-auto">
+			<div className="flex justify-center">
+				<div className="absolute top-[-30px] rounded-full bg-[#1c1731] border-2 border-[#46425E] z-50">
+						<img
+							src={token.icon}
+							alt=""
+							width={70}
+							className="object-cover rounded-full p-2"
+						/>
+				</div>
 			</div>
-			<div className="bg-gradient-to-b from-[#46425E] to-[#000000] custom-border w-[470px] p-[1px] rounded-xl">
+			<div className="bg-gradient-to-b relative from-[#46425E] to-[#000000] p-[1px] rounded-xl">
 				<form
 					onSubmit={handleSubmit}
-					className="flex flex-col px-9 py-10 pt-20 space-y-6 custom-border  bg-[#0B0819] rounded-xl h-full"
+					className="flex flex-col px-9 py-10 pt-20 space-y-6 bg-[#0B0819] rounded-xl h-full"
 				>
 					<CurrentValue token={token.symbol} setUsdPrice={setUsdPrice} />
 					<SearchDropdown
@@ -99,6 +101,8 @@ const Form: React.FC = () => {
 				</form>
 			</div>
 		</div>
+		// 	<div className="max-w-md border">
+		// 	</div>
 	);
 };
 
